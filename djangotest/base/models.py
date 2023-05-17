@@ -9,17 +9,26 @@ class dbtest(models.Model):
 	def __str__(self):
 		return self.text
 
-class student(models.Model):
+class School(models.Model):
+	name = models.CharField(max_length=100)
+	classification = models.CharField(max_length=100)
+ 
+	def __str__(self):
+		return self.name
+
+class Student(models.Model):
+    id = models.AutoField(primary_key=True, default=0)
 	student_id = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=100)
 	birthday = models.DateField(auto_now=False)
 	gender = models.CharField(max_length=10)
 	sibling = models.BooleanField()
-
+	school = models.ForeignKey(School, on_delete=models.CASCADE)
+ 
 	def __str__(self):
 		return self.name
 
-class parent(models.Model):
+class Parent(models.Model):
 	parent_id = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=100)
 	postal_code = models.PositiveIntegerField()

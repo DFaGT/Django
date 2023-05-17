@@ -1,18 +1,42 @@
-- model: base.student
+- model: base.School
   fields:
+    name: ひばりヶ丘
+    classification: 中学校
+
+- model: base.School
+  fields:
+    name: 田無第二
+    classification: 中学校
+
+- model: base.School
+  fields:
+    name: 栄
+    classification: 小学校
+
+- model: base.School
+  fields:
+    name: 保谷
+    classification: 高校
+
+- model: base.Student
+  fields:
+    student_id: 1
     name: John Smith
     birthday: 2005-01-01
     gender: Male
     sibling: false
-
-- model: base.student
+    school: 3
+    
+- model: base.Student
   fields:
+    student_id: 2
     name: Jane Doe
     birthday: 2006-02-02
     gender: Female
     sibling: true
+    school: 2
 
-- model: base.parent
+- model: base.Parent
   fields:
     name: Tom Smith
     postal_code: 1234567
@@ -20,10 +44,11 @@
     email: tom@example.com
     phone_number: 09012345678
 
-- model: base.parent
+- model: base.Parent
   fields:
     name: Mary Doe
     postal_code: 2345678
     adress: Osaka
     email: mary@example.com
     phone_number: 08023456789
+
