@@ -1,0 +1,37 @@
+<!-- school_list.html -->
+<!-- 絞り込みフォーム -->
+<form method="GET" action="">
+    <input type="checkbox" name="filter" id="filter" {% if filter_checked %}checked{% endif %}>
+    <label for="filter">兄弟有のみ表示する</label>
+    <button type="submit">絞り込む</button>
+    {% if filter_checked %}
+      <a href="?filter=">絞り込み解除</a>
+    {% endif %}
+  </form>
+  
+  <!-- 学校リストの表示 -->
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>postal_code</th>
+        <th>address</th>
+        <th>email</th>
+        <th>phone_number</th>
+        <th>sibling</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for parent in parents %}
+        <tr>
+          <td>{{ parent.name }}</td>
+          <td>{{ parent.postal_code }}</td>
+          <td>{{ parent.address }}</td>
+          <td>{{ parent.email }}</td>
+          <td>{{ parent.phone_number }}</td>
+          <td>{{ parent.sibling }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  

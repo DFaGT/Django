@@ -59,12 +59,14 @@ class School(models.Model):
 		return self.name
 
 class Parent(models.Model):
+	STATUS_TYPES = StatusChoices.choices
 	parent_id = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=100)
 	postal_code = models.CharField(max_length=20)
 	address = models.CharField(max_length=100)
 	email = models.CharField(max_length=100)
 	phone_number = models.CharField(max_length=100)
+	status = models.CharField(max_length=10, choices=STATUS_TYPES,blank=True)
 
 	def __str__(self):
 		return self.name
