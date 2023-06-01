@@ -1,55 +1,79 @@
-- model: base.School
-  fields:
-    name: ひばりヶ丘
-    classification: 中学校
-
-- model: base.School
-  fields:
-    name: 田無第二
-    classification: 中学校
-
-- model: base.School
+- model: base.school
   fields:
     name: 栄
-    classification: 小学校
-
-- model: base.School
+    classification: E
+    city: E
+- model: base.school
+  fields:
+    name: ひばりヶ丘
+    classification: J
+    city: J
+- model: base.school
   fields:
     name: 保谷
-    classification: 高校
-
-- model: base.Parent
+    classification: H
+    city: H
+- model: base.parent
   fields:
-    name: Tom Smith
-    postal_code: 1234567
-    address: Tokyo
-    email: tom@example.com
-    phone_number: 09012345678
-
-- model: base.Parent
+    name: 田中太郎
+    postal_code: 12345
+    address: 東京都渋谷区1-2-3
+    email: taro@example.com
+    phone_number: 090-1234-5678
+- model: base.parent
   fields:
-    name: Mary Doe
-    postal_code: 2345678
-    address: Osaka
-    email: mary@example.com
-    phone_number: 08023456789
-
-- model: base.Student
+    name: 山田花子
+    postal_code: 54321
+    address: 東京都新宿区4-5-6
+    email: hanako@example.com
+    phone_number: 090-9876-5432
+- model: base.student
   fields:
-    student_id: 1
-    name: John Smith
-    birthday: 2005-01-01
-    gender: Male
+    name: 佐藤太郎
+    birthday: 2011-03-20
+    gender: M
+    sibling: true
+    school: 1
+    parent: 1
+    grade: e4
+    status: A
+- model: base.student
+  fields:
+    name: 田中花子
+    birthday: 2010-09-10
+    gender: F
+    sibling: false
+    school: 2
+    parent: 2
+    grade: j2
+    status: T
+- model: base.student
+  fields:
+    name: 山田次郎
+    birthday: 2010-05-15
+    gender: M
+    sibling: true
+    school: 1
+    parent: 2
+    grade: h1
+    status: C
+- model: base.student
+  fields:
+    name: 佐々木さくら
+    birthday: 2011-07-01
+    gender: F
     sibling: false
     school: 3
     parent: 1
-    
-- model: base.Student
+    grade: e5
+    status: A
+- model: base.student
   fields:
-    student_id: 2
-    name: Jane Doe
-    birthday: 2006-02-02
-    gender: Female
+    name: 中村拓也
+    birthday: 2010-12-25
+    gender: M
     sibling: true
     school: 2
-    parent: 2
+    parent: 1
+    grade: j3
+    status: R

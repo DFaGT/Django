@@ -1,0 +1,34 @@
+<!-- school_list.html -->
+<!-- 絞り込みフォーム -->
+<form method="GET" action="">
+    <input type="checkbox" name="filter" id="filter" {% if filter_checked %}checked{% endif %}>
+    <label for="filter">中学校のみ表示する</label>
+    <button type="submit">絞り込む</button>
+    {% if filter_checked %}
+      <a href="?filter=">絞り込み解除</a>
+    {% endif %}
+  </form>
+  
+  <!-- 学校リストの表示 -->
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Classification</th>
+        <th>City</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for school in schools %}
+        <tr>
+          <td>{{ school.name }}</td>
+          <td>{{ school.classification }}</td>
+          <td>{{ school.get_city_display }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+  <!-- 学校登録リンク -->
+  <a href="{% url 'school-create' %}">学校を登録する</a>
+  
