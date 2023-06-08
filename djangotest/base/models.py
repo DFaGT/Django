@@ -3,9 +3,9 @@ from django.db import models
 # Create your models here.
 
 class GenderChoices(models.TextChoices):
-	Male = "M", "男"
-	Female = "F", "女"
-	Other = "O", "その他"
+	Male = "男", "男"
+	Female = "女", "女"
+	Other = "その他", "その他"
 
 class ClassChoices(models.TextChoices):
 	Elementary = "小学校", "小学校"
@@ -14,31 +14,31 @@ class ClassChoices(models.TextChoices):
 	Other = "その他", "その他"
 
 class CityChoices(models.TextChoices):
-	WestTokyo = "E", "西東京市"
-	HigashiKurume = "J", "東久留米市"
-	Niiza = "H", "新座市"
-	Nerima = "O", "練馬区"
-	Kodaira = "P", "小平市"
+	WestTokyo = "西東京市", "西東京市"
+	HigashiKurume = "東久留米市", "東久留米市"
+	Niiza = "新座市", "新座市"
+	Nerima = "練馬区", "練馬区"
+	Kodaira = "小平市", "小平市"
 
 class StatusChoices(models.TextChoices):
-	Atend = "A", "通塾"
-	Closed = "C", "休塾"
-	Retired = "R", "退塾"
-	Trial = "T", "体験"
+	Atend = "通塾", "通塾"
+	Closed = "休塾", "休塾"
+	Retired = "退塾", "退塾"
+	Trial = "体験", "体験"
 
 class GradeCoices(models.TextChoices):
-	Elementary1st = "e1", "小学1年性"
-	Elementary2nd = "e2", "小学2年性"
-	Elementary3rd = "e3", "小学3年性"
-	Elementary4th = "e4", "小学4年性"
-	Elementary5th = "e5", "小学5年性"
-	Elementary6th = "e6", "小学6年性"
-	JuniorHigh1st = "j1", "中学1年性"
-	JuniorHigh2nd = "j2", "中学2年性"
-	JuniorHigh3rd = "j3", "中学3年性"
-	High1st = "h1", "高校1年生"
-	High2nd = "h2", "高校2年生"
-	High3rd = "h3", "高校3年生"
+	Elementary1st = "小学1年性", "小学1年性"
+	Elementary2nd = "小学2年性", "小学2年性"
+	Elementary3rd = "小学3年性", "小学3年性"
+	Elementary4th = "小学4年性", "小学4年性"
+	Elementary5th = "小学5年性", "小学5年性"
+	Elementary6th = "小学6年性", "小学6年性"
+	JuniorHigh1st = "中学1年性", "中学1年性"
+	JuniorHigh2nd = "中学2年性", "中学2年性"
+	JuniorHigh3rd = "中学3年性", "中学3年性"
+	High1st = "高校1年生", "高校1年生"
+	High2nd = "高校2年生", "高校2年生"
+	High3rd = "高校3年生", "高校3年生"
 
 class dbtest(models.Model):
 	text = models.CharField(max_length=100)
@@ -54,7 +54,11 @@ class School(models.Model):
 	name = models.CharField(max_length=100)
 	classification = models.CharField(max_length=10, choices=CLASS_TYPES)
 	city = models.CharField(max_length=10, choices=SCHOOL_TYPES,blank=True)
- 
+	exam_01 = models.DateField(auto_now=False, null=True)
+	exam_02 = models.DateField(auto_now=False, null=True)
+	exam_03 = models.DateField(auto_now=False, null=True)
+	exam_04 = models.DateField(auto_now=False, null=True)
+	exam_05 = models.DateField(auto_now=False, null=True)
 	def __str__(self):
 		return self.name
 
@@ -77,6 +81,7 @@ class Student(models.Model):
 	STATUS_TYPES = StatusChoices.choices
 	student_id = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=100)
+	name_kana = models.CharField(max_length=100, null=True)
 	birthday = models.DateField(auto_now=False)
 	gender = models.CharField(max_length=10, choices=GENDER_TYPES)
 	sibling = models.BooleanField()
