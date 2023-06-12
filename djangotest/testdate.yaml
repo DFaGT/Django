@@ -1,79 +1,58 @@
 - model: base.school
   fields:
-    name: 栄
-    classification: E
-    city: E
-- model: base.school
-  fields:
-    name: ひばりヶ丘
-    classification: J
-    city: J
-- model: base.school
-  fields:
-    name: 保谷
-    classification: H
-    city: H
+    name: "小平市立小平小学校"
+    classification: "小学校"
+    city: "小平市"
+    exam_01: 2023-04-01
+    exam_02: 2023-07-01
+    exam_03: 2023-10-01
+    exam_04: 2024-01-01
+    exam_05: 2024-04-01
 - model: base.parent
   fields:
-    name: 田中太郎
-    postal_code: 12345
-    address: 東京都渋谷区1-2-3
-    email: taro@example.com
-    phone_number: 090-1234-5678
-- model: base.parent
-  fields:
-    name: 山田花子
-    postal_code: 54321
-    address: 東京都新宿区4-5-6
-    email: hanako@example.com
-    phone_number: 090-9876-5432
+    name: "佐藤太郎"
+    postal_code: "182-0024"
+    address: "東京都小平市小川町1-1-1"
+    email: "taro_sato@example.com"
+    phone_number: "090-1234-5678"
+    status: "通塾"
 - model: base.student
   fields:
-    name: 佐藤太郎
-    birthday: 2011-03-20
-    gender: M
-    sibling: true
+    name: "佐藤花子"
+    name_kana: "サトウハナコ"
+    birthday: 2012-06-01
+    gender: "女"
+    sibling: false
     school: 1
     parent: 1
-    grade: e4
-    status: A
+    grade: "小学5年性"
+    status: "通塾"
+- model: base.school
+  fields:
+    name: "西東京市立西東京中学校"
+    classification: "中学校"
+    city: "西東京市"
+    exam_01: 2023-04-01
+    exam_02: 2023-07-01
+    exam_03: 2023-10-01
+    exam_04: 2024-01-01
+    exam_05: 2024-04-01
+- model: base.parent
+  fields:
+    name: "鈴木一郎"
+    postal_code: "202-0014"
+    address: "東京都西東京市新町1-1-1"
+    email: "ichiro_suzuki@example.com"
+    phone_number: "090-2345-6789"
+    status: "通塾"
 - model: base.student
   fields:
-    name: 田中花子
-    birthday: 2010-09-10
-    gender: F
+    name: "鈴木次郎"
+    name_kana: "スズキジロウ"
+    birthday: 2010-05-01  # 2023年時点で中学1年生
+    gender: "男"
     sibling: false
     school: 2
     parent: 2
-    grade: j2
-    status: T
-- model: base.student
-  fields:
-    name: 山田次郎
-    birthday: 2010-05-15
-    gender: M
-    sibling: true
-    school: 1
-    parent: 2
-    grade: h1
-    status: C
-- model: base.student
-  fields:
-    name: 佐々木さくら
-    birthday: 2011-07-01
-    gender: F
-    sibling: false
-    school: 3
-    parent: 1
-    grade: e5
-    status: A
-- model: base.student
-  fields:
-    name: 中村拓也
-    birthday: 2010-12-25
-    gender: M
-    sibling: true
-    school: 2
-    parent: 1
-    grade: j3
-    status: R
+    grade: "中学1年性"
+    status: "通塾"
