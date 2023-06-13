@@ -3,11 +3,6 @@
     name: "小平市立小平小学校"
     classification: "小学校"
     city: "小平市"
-    exam_01: 2023-04-01
-    exam_02: 2023-07-01
-    exam_03: 2023-10-01
-    exam_04: 2024-01-01
-    exam_05: 2024-04-01
 - model: base.parent
   fields:
     name: "佐藤太郎"
@@ -25,18 +20,18 @@
     sibling: false
     school: 1
     parent: 1
-    grade: "小学5年性"
+    grade: "小学5年生"
     status: "通塾"
 - model: base.school
   fields:
     name: "西東京市立西東京中学校"
     classification: "中学校"
     city: "西東京市"
-    exam_01: 2023-04-01
-    exam_02: 2023-07-01
-    exam_03: 2023-10-01
-    exam_04: 2024-01-01
-    exam_05: 2024-04-01
+    exam_01: 2023-05-15
+    exam_02: 2023-06-30
+    exam_03: 2023-09-14
+    exam_04: 2024-11-29
+    exam_05: 2024-01-28
 - model: base.parent
   fields:
     name: "鈴木一郎"
@@ -54,5 +49,164 @@
     sibling: false
     school: 2
     parent: 2
-    grade: "中学1年性"
+    grade: "中学1年生"
     status: "通塾"
+- model: base.school
+  fields:
+    name: "東久留米市立久留米高校"
+    classification: "高校"
+    city: "東久留米市"
+    exam_01: 2023-06-01
+    exam_02: 2023-07-10
+    exam_03: 2023-10-10
+    exam_04: 2024-12-15
+    exam_05: 2024-01-30
+- model: base.parent
+  fields:
+    name: "田中良子"
+    postal_code: "203-0033"
+    address: "東京都東久留米市桜町1-1-1"
+    email: "ryoko_tanaka@example.com"
+    phone_number: "090-3456-7890"
+    status: "通塾"
+- model: base.student
+  fields:
+    name: "田中健一"
+    name_kana: "タナカケンイチ"
+    birthday: 2005-04-01  # 2023年時点で高校1年生
+    gender: "男"
+    sibling: false
+    school: 3
+    parent: 3
+    grade: "高校1年生"
+    status: "通塾"
+- model: base.school
+  fields:
+    name: "新座市立新座中学校"
+    classification: "中学校"
+    city: "新座市"
+    exam_01: 2023-06-05
+    exam_02: 2023-07-10
+    exam_03: 2023-09-25
+    exam_04: 2024-12-03
+    exam_05: 2024-01-28
+- model: base.parent
+  fields:
+    name: "山田幸子"
+    postal_code: "352-0011"
+    address: "東京都新座市新座1-1-1"
+    email: "sachiko_yamada@example.com"
+    phone_number: "090-4567-8901"
+    status: "通塾"
+- model: base.student
+  fields:
+    name: "山田陽一"
+    name_kana: "ヤマダヨウイチ"
+    birthday: 2009-07-01  # 2023年時点で中学2年生
+    gender: "男"
+    sibling: false
+    school: 4
+    parent: 4
+    grade: "中学2年生"
+    status: "通塾"
+- model: base.school
+  fields:
+    name: "練馬区立練馬小学校"
+    classification: "小学校"
+    city: "練馬区"
+- model: base.parent
+  fields:
+    name: "佐藤信二"
+    postal_code: "177-0033"
+    address: "東京都練馬区練馬1-1-1"
+    email: "shinji_sato@example.com"
+    phone_number: "090-5678-9012"
+    status: "通塾"
+- model: base.student
+  fields:
+    name: "佐藤陽子"
+    name_kana: "サトウヨウコ"
+    birthday: 2018-09-01  # 2023年時点で小学1年生
+    gender: "女"
+    sibling: false
+    school: 5
+    parent: 5
+    grade: "小学1年生"
+    status: "通塾"
+- model: base.school
+  fields:
+    name: "小平市立小平高校"
+    classification: "高校"
+    city: "小平市"
+    exam_01: 2023-05-25
+    exam_02: 2023-07-01
+    exam_03: 2023-10-20
+    exam_04: 2024-11-25
+    exam_05: 2024-01-20
+- model: base.parent
+  fields:
+    name: "鈴木雅美"
+    postal_code: "187-0032"
+    address: "東京都小平市小平1-1-1"
+    email: "masami_suzuki@example.com"
+    phone_number: "090-6789-0123"
+    status: "通塾"
+- model: base.student
+  fields:
+    name: "鈴木優子"
+    name_kana: "スズキユウコ"
+    birthday: 2006-10-01  # 2023年時点で高校2年生
+    gender: "女"
+    sibling: true
+    school: 6
+    parent: 6
+    grade: "高校2年生"
+    status: "通塾"
+- model: base.parent
+  fields:
+    name: "鈴木英男"
+    postal_code: "187-0032"
+    address: "東京都小平市小平1-1-1"
+    email: "hideo_suzuki@example.com"
+    phone_number: "090-7890-1234"
+    status: "通塾"
+- model: base.student
+  fields:
+    name: "鈴木拓也"
+    name_kana: "スズキタクヤ"
+    birthday: 2007-10-01  # 2023年時点で高校1年生
+    gender: "男"
+    sibling: true
+    school: 6
+    parent: 7
+    grade: "高校1年生"
+    status: "通塾"
+- model: base.school
+  fields:
+    name: "東久留米市立東久留米中学校"
+    classification: "中学校"
+    city: "東久留米市"
+    exam_01: 2023-05-30
+    exam_02: 2023-06-30
+    exam_03: 2023-10-01
+    exam_04: 2024-11-25
+    exam_05: 2024-01-30
+- model: base.parent
+  fields:
+    name: "渡辺洋子"
+    postal_code: "203-0023"
+    address: "東京都東久留米市東久留米1-1-1"
+    email: "youko_watanabe@example.com"
+    phone_number: "090-8910-1234"
+    status: "休塾"
+- model: base.student
+  fields:
+    name: "渡辺太郎"
+    name_kana: "ワタナベタロウ"
+    birthday: 2011-05-01  # 2023年時点で中学1年生
+    gender: "男"
+    sibling: false
+    school: 6
+    parent: 8
+    grade: "中学1年生"
+    status: "休塾"
