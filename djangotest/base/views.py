@@ -48,7 +48,7 @@ class StudentListView(ListView):
 class ParentListView(ListView):
     model = Parent
     template_name = 'parent_list.html'
-    context_object_name = 'Parents'
+    context_object_name = 'parents'
 
     def get_queryset(self):
         queryset = super().get_queryset()
