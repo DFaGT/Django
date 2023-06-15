@@ -26,6 +26,26 @@ class StatusChoices(models.TextChoices):
 	Retired = "退塾", "退塾"
 	Trial = "体験", "体験"
 
+class SubjectChoices(models.TextChoices):
+	Math = "数学", "数学"
+	English = "英語", "英語"
+	Science = "理科", "理科"
+	Social = "社会", "社会"
+	Japanese = "国語", "国語"
+	Other = "その他", "その他"
+
+class CourseChoices(models.TextChoices):
+	kobetu2 = "個別指導(月2回)", "個別指導(月2回)"
+	kobetu4 = "個別指導(月4回)", "個別指導(月4回)"
+	kobetu8 = "個別指導(月8回)", "個別指導(月8回)"
+	basic = "通い放題ベーシック", "通い放題ベーシック"
+	light = "通い放題ライト", "通い放題ライト"
+	mini = "通い放題ミニ", "通い放題ミニ"
+	honka = "小学生本科", "小学生本科"
+	sogo = "小学生総合", "小学生総合"
+	robot = "ロボット教室", "ロボット教室"
+	programming = "プログラミング教室", "プログラミング教室"
+
 class GradeCoices(models.TextChoices):
 	Elementary1st = "小学1年生", "小学1年生"
 	Elementary2nd = "小学2年生", "小学2年生"
@@ -71,6 +91,8 @@ class Parent(models.Model):
 	email = models.CharField(max_length=100)
 	phone_number = models.CharField(max_length=100)
 	status = models.CharField(max_length=10, choices=STATUS_TYPES,blank=True)
+	terms = models.BooleanField(null=True)
+	how_to_know = models.CharField(max_length=100, null=True, blank=True)
 
 	def __str__(self):
 		return self.name
@@ -79,6 +101,7 @@ class Student(models.Model):
 	GENDER_TYPES = GenderChoices.choices
 	GRADE_TYPES = GradeCoices.choices
 	STATUS_TYPES = StatusChoices.choices
+	COURSE_TYPES = CourseChoices.choices
 	student_id = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=100)
 	name_kana = models.CharField(max_length=100, null=True)
@@ -89,6 +112,9 @@ class Student(models.Model):
 	parent = models.ForeignKey(Parent, on_delete=models.CASCADE)
 	grade = models.CharField(max_length=10, choices=GRADE_TYPES,blank=True)
 	status = models.CharField(max_length=10, choices=STATUS_TYPES,blank=True)
+	phone_number = models.CharField(max_length=100, null=True, blank=True)
+	introducer = models.CharField(max_length=100, null=True, blank=True)
+	course = models.CharField(max_length=100, choices=COURSE_TYPES,blank=True)
 
 	def __str__(self):
 		return self.name
