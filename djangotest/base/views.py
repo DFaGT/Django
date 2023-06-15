@@ -4,6 +4,10 @@ from django.views.generic import ListView, CreateView
 from .models import School
 from .models import Student
 from .models import Parent
+from django.shortcuts import render
+from .forms import ParentForm
+from django.http import HttpResponse
+from .forms import StudentForm
 
 class SchoolListView(ListView):
     model = School
@@ -61,3 +65,29 @@ class ParentListView(ListView):
         context = super().get_context_data(**kwargs)
         context['filter_checked'] = self.request.GET.get('filter')
         return context
+    
+
+def register_parent(request):
+    if request.method == 'POST':
+        form = ParentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('thanks') 
+    else:
+        form = ParentForm()
+
+    return render(request, 'base/register_parent.html', {'form': form})
+
+def thanks(request):
+    return HttpResponse("Thank you for registering!")
+
+def register_student(request):
+    if request.method == 'POST':
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('thanks')
+    else:
+        form = StudentForm()
+
+    return render(request, 'base/register_student.html', {'form': form})

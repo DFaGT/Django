@@ -24,4 +24,5 @@ urlpatterns = [
     path('student/', StudentListView.as_view(), name='student-list'),
     path('parent/', ParentListView.as_view(), name='parent-list'),
     path('school/create/', SchoolCreateView.as_view(), name='school-create'),
+    path('base/', include('base.urls')),
 ]
