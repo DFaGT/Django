@@ -1,5 +1,13 @@
 <form method="post">
   {% csrf_token %}
-  {{ form.as_p }}
+  {{ form.name.label_tag }} {{ form.name }}<br>
+  {{ form.name_kana.label_tag }} {{ form.name_kana }}<br>
+  {{ form.birthday.label_tag }} <input type="date" name="{{ form.birthday.name }}" value="{{ form.birthday.value|default_if_none:'' }}"><br>  {{ form.gender.label_tag }} {{ form.gender }}<br>
+  {{ form.sibling.label_tag }} {{ form.sibling }}<br>
+  {{ form.school.label_tag }} {{ form.school }}<br>
+  {{ form.grade.label_tag }} {{ form.grade }}<br>
+  {{ form.phone_number.label_tag }} {{ form.phone_number }}<br>
+  {{ form.introducer.label_tag }} {{ form.introducer }}<br>
+  {{ form.course.label_tag }} {{ form.course }}<br>
   <button type="submit">Register</button>
 </form>

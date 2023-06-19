@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from base.views import SchoolListView, SchoolCreateView, StudentListView, ParentListView
+from base.views import SchoolListView, SchoolCreateView, StudentListView, ParentListView, StudentUpdateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +25,5 @@ urlpatterns = [
     path('parent/', ParentListView.as_view(), name='parent-list'),
     path('school/create/', SchoolCreateView.as_view(), name='school-create'),
     path('base/', include('base.urls')),
+    path('student/<int:pk>/edit/', StudentUpdateView.as_view(), name='student_edit'),
 ]

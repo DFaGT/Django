@@ -109,7 +109,7 @@ class Student(models.Model):
 	gender = models.CharField(max_length=10, choices=GENDER_TYPES)
 	sibling = models.BooleanField()
 	school = models.ForeignKey(School, on_delete=models.CASCADE)
-	parent = models.ForeignKey(Parent, on_delete=models.CASCADE)
+	parent = models.ForeignKey(Parent, on_delete=models.CASCADE, null=True)
 	grade = models.CharField(max_length=10, choices=GRADE_TYPES,blank=True)
 	status = models.CharField(max_length=10, choices=STATUS_TYPES,blank=True)
 	phone_number = models.CharField(max_length=100, null=True, blank=True)

@@ -1,6 +1,6 @@
 # views.py
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 from .models import School
 from .models import Student
 from .models import Parent
@@ -8,6 +8,8 @@ from django.shortcuts import render
 from .forms import ParentForm
 from django.http import HttpResponse
 from .forms import StudentForm
+from django.urls import reverse_lazy
+
 
 class SchoolListView(ListView):
     model = School
@@ -91,3 +93,9 @@ def register_student(request):
         form = StudentForm()
 
     return render(request, 'base/register_student.html', {'form': form})
+
+class StudentUpdateView(UpdateView):
+    model = Student
+    form_class = StudentForm
+    template_name = 'base/student_update.html'
+    success_url = reverse_lazy('student-list')

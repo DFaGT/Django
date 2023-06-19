@@ -1,47 +1,36 @@
-<!-- school_list.html -->
-<!-- 絞り込みフォーム -->
-<form method="GET" action="">
-    <input type="checkbox" name="filter" id="filter" {% if filter_checked %}checked{% endif %}>
-    <label for="filter">通塾のみ表示する</label>
-    <button type="submit">絞り込む</button>
-    {% if filter_checked %}
-      <a href="?filter=">絞り込み解除</a>
-    {% endif %}
-  </form>
-  
-  <!-- 学校リストの表示 -->
-  <table>
-    <thead>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Birthday</th>
+      <th>Gender</th>
+      <th>Sibling</th>
+      <th>School</th>
+      <th>Parent</th>
+      <th>Grade</th>
+      <th>Status</th>
+      <th>Phone Number</th>
+      <th>Introducer</th>
+      <th>Course</th>
+      <th>Edit</th>  <!-- 編集リンクの列を追加 -->
+    </tr>
+  </thead>
+  <tbody>
+    {% for student in students %}
       <tr>
-        <th>Name</th>
-        <th>birthday</th>
-        <th>gender</th>
-        <th>sibiling</th>
-        <th>school</th>
-        <th>parent</th>
-        <th>grade</th>
-        <th>status</th>
-        <th>phone_number</th>
-        <th>introducer</th>
-        <th>course</th>
+        <td>{{ student.name }}</td>
+        <td>{{ student.birthday }}</td>
+        <td>{{ student.gender }}</td>
+        <td>{{ student.sibling }}</td>
+        <td>{{ student.school }}</td>
+        <td>{{ student.parent }}</td>
+        <td>{{ student.grade }}</td>
+        <td>{{ student.status }}</td>
+        <td>{{ student.phone_number }}</td>
+        <td>{{ student.introducer }}</td>
+        <td>{{ student.course }}</td>
+        <td><a href="{% url 'student_edit' student.pk %}">Edit</a></td>  <!-- 編集リンク -->
       </tr>
-    </thead>
-    <tbody>
-      {% for student in students %}
-        <tr>
-          <td>{{ student.name }}</td>
-          <td>{{ student.birthday }}</td>
-          <td>{{ student.gender }}</td>
-          <td>{{ student.sibling }}</td>
-          <td>{{ student.school }}</td>
-          <td>{{ student.parent }}</td>
-          <td>{{ student.grade }}</td>
-          <td>{{ student.status }}</td>
-          <td>{{ student.phone_number }}</td>
-          <td>{{ student.introducer }}</td>
-          <td>{{ student.course }}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  
+    {% endfor %}
+  </tbody>
+</table>
