@@ -1,7 +1,40 @@
-<!-- school_create.html -->
 <h2>学校登録</h2>
 <form method="post">
   {% csrf_token %}
-  {{ form.as_p }}
+  <div class="field-wrapper">
+    <label for="{{ form.name.id_for_label }}">学校名:</label>
+    {{ form.name }}
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.classification.id_for_label }}">分類:</label>
+    {{ form.classification }}
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.city.id_for_label }}">都市:</label>
+    {{ form.city }}
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.exam_01.id_for_label }}">試験1:</label>
+    <input type="date" name="{{ form.exam_01.name }}" value="{{ form.exam_01.value|default_if_none:'' }}">
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.exam_02.id_for_label }}">試験2:</label>
+    <input type="date" name="{{ form.exam_02.name }}" value="{{ form.exam_02.value|default_if_none:'' }}">
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.exam_03.id_for_label }}">試験3:</label>
+    <input type="date" name="{{ form.exam_03.name }}" value="{{ form.exam_03.value|default_if_none:'' }}">
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.exam_04.id_for_label }}">試験4:</label>
+    <input type="date" name="{{ form.exam_04.name }}" value="{{ form.exam_04.value|default_if_none:'' }}">
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.exam_05.id_for_label }}">試験5:</label>
+    <input type="date" name="{{ form.exam_05.name }}" value="{{ form.exam_05.value|default_if_none:'' }}">
+  </div>
+  
+  
+  <!-- 他のフィールドを追加 -->
   <button type="submit">登録</button>
 </form>
