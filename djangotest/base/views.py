@@ -98,4 +98,4 @@ class StudentUpdateView(UpdateView):
     model = Student
     form_class = StudentForm
     template_name = 'base/student_update.html'
-    success_url = reverse_lazy('student_list')
+    success_url = reverse_lazy('student-list')
