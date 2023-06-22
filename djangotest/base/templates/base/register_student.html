@@ -1,13 +1,44 @@
 <form method="post">
   {% csrf_token %}
-  {{ form.name.label_tag }} {{ form.name }}<br>
-  {{ form.name_kana.label_tag }} {{ form.name_kana }}<br>
-  {{ form.birthday.label_tag }} <input type="date" name="{{ form.birthday.name }}" value="{{ form.birthday.value|default_if_none:'' }}"><br>  {{ form.gender.label_tag }} {{ form.gender }}<br>
-  {{ form.sibling.label_tag }} {{ form.sibling }}<br>
-  {{ form.school.label_tag }} {{ form.school }}<br>
-  {{ form.grade.label_tag }} {{ form.grade }}<br>
-  {{ form.phone_number.label_tag }} {{ form.phone_number }}<br>
-  {{ form.introducer.label_tag }} {{ form.introducer }}<br>
-  {{ form.course.label_tag }} {{ form.course }}<br>
-  <button type="submit">Register</button>
+  <div class="field-wrapper">
+    <label for="{{ form.name.id_for_label }}">名前:</label>
+    {{ form.name }}
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.name_kana.id_for_label }}">名前（かな）:</label>
+    {{ form.name_kana }}
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.birthday.id_for_label }}">誕生日:</label>
+    <input type="date" name="{{ form.birthday.name }}" value="{{ form.birthday.value|default_if_none:'' }}">
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.gender.id_for_label }}">性別:</label>
+    {{ form.gender }}
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.sibling.id_for_label }}">兄弟姉妹の有無:</label>
+    {{ form.sibling }}
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.school.id_for_label }}">学校:</label>
+    {{ form.school }}
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.grade.id_for_label }}">学年:</label>
+    {{ form.grade }}
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.phone_number.id_for_label }}">電話番号:</label>
+    {{ form.phone_number }}
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.introducer.id_for_label }}">紹介者:</label>
+    {{ form.introducer }}
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.course.id_for_label }}">コース:</label>
+    {{ form.course }}
+  </div>
+  <button type="submit">登録</button>
 </form>

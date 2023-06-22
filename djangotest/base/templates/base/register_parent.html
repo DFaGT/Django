@@ -1,6 +1,32 @@
-<!-- create_parent.html -->
 <form method="POST">
   {% csrf_token %}
-  {{ form.as_p }}
+  <div class="field-wrapper">
+    <label for="{{ form.name.id_for_label }}">名前:</label>
+    {{ form.name }}
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.postal_code.id_for_label }}">郵便番号:</label>
+    {{ form.postal_code }}
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.address.id_for_label }}">住所:</label>
+    {{ form.address }}
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.email.id_for_label }}">メールアドレス:</label>
+    {{ form.email }}
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.phone_number.id_for_label }}">電話番号:</label>
+    {{ form.phone_number }}
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.terms.id_for_label }}">利用規約に同意:</label>
+    {{ form.terms }}
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.how_to_know.id_for_label }}">BASEを知ったきっかけ:</label>
+    {{ form.how_to_know }}
+  </div>
   <button type="submit">登録</button>
 </form>
