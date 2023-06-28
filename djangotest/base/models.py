@@ -85,8 +85,8 @@ class School(models.Model):
 class Parent(models.Model):
 	STATUS_TYPES = StatusChoices.choices
 	parent_id = models.AutoField(primary_key=True)
-	last_name = models.CharField(max_length=100)
-	first_name = models.CharField(max_length=100)
+	last_name = models.CharField(max_length=100, null=True)
+	first_name = models.CharField(max_length=100, null=True)
 	postal_code = models.CharField(max_length=20)
 	address = models.CharField(max_length=100)
 	email = models.CharField(max_length=100)
@@ -96,7 +96,7 @@ class Parent(models.Model):
 	how_to_know = models.CharField(max_length=100, null=True, blank=True)
 
 	def __str__(self):
-		return self.name
+		return self.first_name if self.first_name and self.last_name else ''
 
 class Student(models.Model):
 	GENDER_TYPES = GenderChoices.choices
@@ -104,9 +104,9 @@ class Student(models.Model):
 	STATUS_TYPES = StatusChoices.choices
 	COURSE_TYPES = CourseChoices.choices
 	student_id = models.AutoField(primary_key=True)
-	last_name = models.CharField(max_length=100)
+	last_name = models.CharField(max_length=100, null=True)
 	last_name_kana = models.CharField(max_length=100, null=True)
-	first_name = models.CharField(max_length=100)
+	first_name = models.CharField(max_length=100, null=True)
 	first_name_kana = models.CharField(max_length=100, null=True)
 	birthday = models.DateField(auto_now=False)
 	gender = models.CharField(max_length=10, choices=GENDER_TYPES)
@@ -120,5 +120,5 @@ class Student(models.Model):
 	course = models.CharField(max_length=100, choices=COURSE_TYPES,blank=True)
 
 	def __str__(self):
-		return self.name
+		return self.first_name if self.first_name and self.last_name else ''
 

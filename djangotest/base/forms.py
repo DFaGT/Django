@@ -6,7 +6,7 @@ from .models import School
 class ParentForm(forms.ModelForm):
     class Meta:
         model = Parent
-        fields = ['name', 'postal_code', 'address', 'email', 'phone_number', 'terms', 'how_to_know']  # すべてのフィールドを使用する場合
+        fields = ['last_name','first_name', 'postal_code', 'address', 'email', 'phone_number', 'terms', 'how_to_know']  # すべてのフィールドを使用する場合
         widgets = {
             'birthday': forms.DateInput(attrs={'type': 'date'}),
         }
@@ -17,7 +17,7 @@ class ParentForm(forms.ModelForm):
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields = ['name', 'name_kana', 'birthday', 'gender', 'sibling', 'school', 'grade', 'phone_number', 'introducer', 'course', 'parent', 'status']  # すべてのフィールドを使用する場合
+        fields = ['last_name','first_name', 'last_name_kana', 'first_name_kana', 'birthday', 'gender', 'sibling', 'school', 'grade', 'phone_number', 'introducer', 'course', 'parent', 'status']  # すべてのフィールドを使用する場合
 
 
 

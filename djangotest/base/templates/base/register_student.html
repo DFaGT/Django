@@ -1,7 +1,15 @@
 <form method="post">
   {% csrf_token %}
   <div class="field-wrapper">
-    <label for="{{ form.name.id_for_label }}">名前:</label>
+    <label for="{{ form.last_name.id_for_label }}">名前:</label>
+    {{ form.name }}
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.last_name_kana.id_for_label }}">名前（かな）:</label>
+    {{ form.name_kana }}
+  </div>
+  <div class="field-wrapper">
+    <label for="{{ form.first_name.id_for_label }}">名前:</label>
     {{ form.name }}
   </div>
   <div class="field-wrapper">
