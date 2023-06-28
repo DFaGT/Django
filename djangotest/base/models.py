@@ -85,7 +85,8 @@ class School(models.Model):
 class Parent(models.Model):
 	STATUS_TYPES = StatusChoices.choices
 	parent_id = models.AutoField(primary_key=True)
-	name = models.CharField(max_length=100)
+	last_name = models.CharField(max_length=100)
+	first_name = models.CharField(max_length=100)
 	postal_code = models.CharField(max_length=20)
 	address = models.CharField(max_length=100)
 	email = models.CharField(max_length=100)
@@ -103,8 +104,10 @@ class Student(models.Model):
 	STATUS_TYPES = StatusChoices.choices
 	COURSE_TYPES = CourseChoices.choices
 	student_id = models.AutoField(primary_key=True)
-	name = models.CharField(max_length=100)
-	name_kana = models.CharField(max_length=100, null=True)
+	last_name = models.CharField(max_length=100)
+	last_name_kana = models.CharField(max_length=100, null=True)
+	first_name = models.CharField(max_length=100)
+	first_name_kana = models.CharField(max_length=100, null=True)
 	birthday = models.DateField(auto_now=False)
 	gender = models.CharField(max_length=10, choices=GENDER_TYPES)
 	sibling = models.BooleanField()
