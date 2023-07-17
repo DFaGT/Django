@@ -17,7 +17,7 @@ class ParentForm(forms.ModelForm):
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields = ['last_name','first_name', 'last_name_kana', 'first_name_kana', 'birthday', 'gender', 'sibling', 'school', 'grade', 'phone_number', 'introducer', 'course', 'parent', 'status']  # すべてのフィールドを使用する場合
+        fields = ['last_name', 'last_name_kana', 'first_name', 'first_name_kana', 'birthday', 'gender', 'sibling', 'school', 'grade', 'phone_number', 'introducer', 'course', 'parent', 'status']  # すべてのフィールドを使用する場合
 
 
 
