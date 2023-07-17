@@ -1,6 +1,104 @@
 <form method="POST" action="{% url 'base:new_register' %}">
     {% csrf_token %}
-    {{ student_form.as_p }}
-    {{ parent_form.as_p }}
-    <input type="submit" value="登録">
+    
+    <!-- Parent モデルのフィールド -->
+    <div>
+        保護者入力欄
+    </div>
+    <br>
+    <div class="field-wrapper">
+        <label for="{{ parent_form.last_name.id_for_label }}">保護者の苗字:</label>
+        {{ parent_form.last_name }}
+    </div>
+    <div class="field-wrapper">
+        <label for="{{ parent_form.first_name.id_for_label }}">保護者の名前:</label>
+        {{ parent_form.first_name }}
+    </div>
+    <div class="field-wrapper">
+        <label for="{{ parent_form.postal_code.id_for_label }}">保護者の郵便番号:</label>
+        {{ parent_form.postal_code }}
+    </div>
+    <div class="field-wrapper">
+        <label for="{{ parent_form.address.id_for_label }}">保護者の住所:</label>
+        {{ parent_form.address }}
+    </div>
+    <div class="field-wrapper">
+        <label for="{{ parent_form.email.id_for_label }}">保護者のメールアドレス:</label>
+        {{ parent_form.email }}
+    </div>
+    <div class="field-wrapper">
+        <label for="{{ parent_form.phone_number.id_for_label }}">保護者の電話番号:</label>
+        {{ parent_form.phone_number }}
+    </div>
+    <div class="field-wrapper">
+        <label for="{{ parent_form.terms.id_for_label }}">利用規約に同意:</label>
+        {{ parent_form.terms }}
+    </div>
+    <div class="field-wrapper">
+        <label for="{{ parent_form.how_to_know.id_for_label }}">BASEを知ったきっかけ:</label>
+        {{ parent_form.how_to_know }}
+    </div>
+    <br>
+    <br>
+    <div>
+        保護者入力欄
+    </div>
+    <br>
+
+    <!-- Student モデルのフィールド -->
+    <div class="field-wrapper">
+        <label for="{{ student_form.last_name.id_for_label }}">生徒の苗字:</label>
+        {{ student_form.last_name }}
+    </div>
+    <div class="field-wrapper">
+        <label for="{{ student_form.last_name_kana.id_for_label }}">生徒の苗字（カナ）:</label>
+        {{ student_form.last_name_kana }}
+    </div>
+    <div class="field-wrapper">
+        <label for="{{ student_form.first_name.id_for_label }}">生徒の名前:</label>
+        {{ student_form.first_name }}
+    </div>
+    <div class="field-wrapper">
+        <label for="{{ student_form.first_name_kana.id_for_label }}">生徒の名前（カナ）:</label>
+        {{ student_form.first_name_kana }}
+    </div>
+    <div class="field-wrapper">
+        <label for="{{ student_form.prefix }}-birthday">生徒の誕生日:</label>
+        <input type="date" name="{{ student_form.prefix }}-birthday" value="{{ student_form.instance.birthday|date:"Y-m-d"|default_if_none:'' }}" required>
+    </div>
+    
+    <div class="field-wrapper">
+        <label for="{{ student_form.gender.id_for_label }}">生徒の性別:</label>
+        {{ student_form.gender }}
+    </div>
+    <div class="field-wrapper">
+        <label for="{{ student_form.sibling.id_for_label }}">兄弟姉妹の有無:</label>
+        {{ student_form.sibling }}
+    </div>
+    <div class="field-wrapper">
+        <label for="{{ student_form.school.id_for_label }}">学校:</label>
+        {{ student_form.school }}
+    </div>
+    <div class="field-wrapper">
+        <label for="{{ student_form.grade.id_for_label }}">学年:</label>
+        {{ student_form.grade }}
+    </div>
+    <div class="field-wrapper">
+        <label for="{{ student_form.status.id_for_label }}">ステータス:</label>
+        {{ student_form.status }}
+    </div>
+    <div class="field-wrapper">
+        <label for="{{ student_form.phone_number.id_for_label }}">生徒の電話番号:</label>
+        {{ student_form.phone_number }}
+    </div>
+    <div class="field-wrapper">
+        <label for="{{ student_form.introducer.id_for_label }}">紹介者:</label>
+        {{ student_form.introducer }}
+    </div>
+    <div class="field-wrapper">
+        <label for="{{ student_form.course.id_for_label }}">コース:</label>
+        {{ student_form.course }}
+    </div>
+    
+    <button type="submit">登録</button>
 </form>

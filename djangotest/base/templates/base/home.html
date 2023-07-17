@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome to the homepage!</h1>
+    <ul>
+        <li><a href="{% url 'school-list' %}">School List</a></li>
+        <li><a href="{% url 'school-create' %}">Create School</a></li>
+        <li><a href="{% url 'parent-list' %}">Parent_list</a></li>
+        <li><a href="{% url 'student-list' %}">Student_list</a></li>
+        <li><a href="{% url 'base:register_parent' %}">Register Parent</a></li>
+        <li><a href="{% url 'base:new_register' %}">NewRegister</a></li>
+        <!-- 以下同様に他のリンクも追加します -->
+    </ul>
+</body>
+</html>

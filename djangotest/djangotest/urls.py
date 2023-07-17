@@ -20,6 +20,8 @@ from base.views import SchoolListView, SchoolCreateView, StudentListView, Parent
 NewRegisterView
 from django.urls import path, include
 
+app_name = 'base'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('school/', SchoolListView.as_view(), name='school-list'),
@@ -27,7 +29,8 @@ urlpatterns = [
     path('parent/', ParentListView.as_view(), name='parent-list'),
     path('school/create/', SchoolCreateView.as_view(), name='school-create'),
     path('student/<int:pk>/edit/', StudentUpdateView.as_view(), name='student_edit'),
+    path('base/', include(('base.urls', 'base'), namespace='base')),
     path('new_register/', NewRegisterView.as_view(), name='new_register'),
-    path('base/', include(('base.urls', 'base'), namespace='base')),  # アプリ内のurls.pyをインクルード
+  # アプリ内のurls.pyをインクルード
 
 ]

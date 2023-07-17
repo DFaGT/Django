@@ -10,7 +10,10 @@ from django.http import HttpResponse
 from .forms import StudentForm
 from django.urls import reverse_lazy
 from django.views import View
+from django.views.generic import TemplateView
 
+class HomeView(TemplateView):
+    template_name = "base/home.html"
 
 class SchoolListView(ListView):
     model = School
@@ -69,27 +72,27 @@ class ParentListView(ListView):
         context['filter_checked'] = self.request.GET.get('filter')
         return context
     
+def thanks(request):
+    return HttpResponse("Thank you for registering!")
 
 def register_parent(request):
     if request.method == 'POST':
         form = ParentForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('thanks') 
+            return redirect('base:thanks') 
     else:
         form = ParentForm()
 
     return render(request, 'base/register_parent.html', {'form': form})
 
-def thanks(request):
-    return HttpResponse("Thank you for registering!")
 
 def register_student(request):
     if request.method == 'POST':
         form = StudentForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('thanks')
+            return redirect('base:thanks')
     else:
         form = StudentForm()
 
@@ -113,6 +116,12 @@ class StudentUpdateView(UpdateView):
         print('Form errors:', form.errors)
         return super().form_invalid(form)
 
+from django.shortcuts import redirect
+from django.views import View
+from django.contrib.sessions.models import Session
+from .forms import ParentForm, StudentForm
+
+
 class NewRegisterView(View):
     def get(self, request):
         student_form = StudentForm(prefix='student')
@@ -123,11 +132,47 @@ class NewRegisterView(View):
         student_form = StudentForm(request.POST, prefix='student')
         parent_form = ParentForm(request.POST, prefix='parent')
         if student_form.is_valid() and parent_form.is_valid():
-            student = student_form.save()
-            parent = parent_form.save(commit=False)
-            parent.student = student
-            parent.save()
-            return redirect('thanks')
+            parent = parent_form.save()  # 保護者を保存
+            student = student_form.save(commit=False)
+            student.parent = parent  # 生徒の parent フィールドに関連付ける
+            student.save()
+            return redirect('base:thanks')
+        else:
+            print('Student form errors:', student_form.errors)
+            print('Parent form errors:', parent_form.errors)
+
+        # エラーメッセージを追加
+        student_form.add_error(None, '保護者情報が必要です。')
+
+        return render(request, 'base/new_register.html', {'student_form': student_form, 'parent_form': parent_form})
+
+
+    def save_form(self, form):
+        # セッションから保護者情報を取得
+        session_key = form.cleaned_data.get('session_key')
+        try:
+            session = Session.objects.get(session_key=session_key)
+            parent_data = session.get_decoded()
+            parent_form = ParentForm(parent_data, prefix='parent')
+            if parent_form.is_valid():
+                parent = parent_form.save()
+                form.instance.parent = parent
+            else:
+                print('Parent form errors:', parent_form.errors)
+        except Session.DoesNotExist:
+            pass  # セッションが見つからない場合は何もしない
+
+    def post(self, request):
+        student_form = StudentForm(request.POST, prefix='student')
+        parent_form = ParentForm(request.POST, prefix='parent')
+        if student_form.is_valid():
+            student = student_form.save(commit=False)
+            student.session_key = request.session.session_key
+            self.save_form(student_form)  # 保護者情報を関連付ける
+            student.save()
+            return redirect('base:thanks')
+        else:
+            print('Student form errors:', student_form.errors)
 
         return render(request, 'base/new_register.html', {'student_form': student_form, 'parent_form': parent_form})
 
