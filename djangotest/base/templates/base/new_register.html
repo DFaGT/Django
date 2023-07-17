@@ -1,0 +1,6 @@
+<form method="POST" action="{% url 'base:new_register' %}">
+    {% csrf_token %}
+    {{ student_form.as_p }}
+    {{ parent_form.as_p }}
+    <input type="submit" value="登録">
+</form>
