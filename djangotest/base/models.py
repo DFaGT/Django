@@ -106,7 +106,9 @@ class Parent(models.Model):
 	how_to_know = models.CharField(max_length=100,choices=HOWTOKNOW_TYPES, null=True, blank=True)
 
 	def __str__(self):
-		return self.first_name if self.first_name and self.last_name else ''
+		full_name = f'{self.last_name} {self.first_name}' if self.first_name and self.last_name else ''
+		return full_name or self.first_name or self.last_name or ''
+
 
 class Student(models.Model):
 	GENDER_TYPES = GenderChoices.choices

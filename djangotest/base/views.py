@@ -132,48 +132,53 @@ class NewRegisterView(View):
         student_form = StudentForm(request.POST, prefix='student')
         parent_form = ParentForm(request.POST, prefix='parent')
         if student_form.is_valid() and parent_form.is_valid():
-            parent = parent_form.save()  # 保護者を保存
+            parent = parent_form.save()  # Save the parent
             student = student_form.save(commit=False)
-            student.parent = parent  # 生徒の parent フィールドに関連付ける
+            student.parent = parent  # Link to the student's parent field
             student.save()
             return redirect('base:thanks')
-        else:
-            print('Student form errors:', student_form.errors)
-            print('Parent form errors:', parent_form.errors)
 
-        # エラーメッセージを追加
-        student_form.add_error(None, '保護者情報が必要です。')
+        # Print errors if there are any
+        print('Student form errors:', student_form.errors)
+        print('Parent form errors:', parent_form.errors)
 
         return render(request, 'base/new_register.html', {'student_form': student_form, 'parent_form': parent_form})
+
 
 
     def save_form(self, form):
         # セッションから保護者情報を取得
         session_key = form.cleaned_data.get('session_key')
+        print('Session key:', session_key)
         try:
             session = Session.objects.get(session_key=session_key)
             parent_data = session.get_decoded()
             parent_form = ParentForm(parent_data, prefix='parent')
             if parent_form.is_valid():
                 parent = parent_form.save()
-                form.instance.parent = parent
+                return parent  # 保存した Parent インスタンスを返す
             else:
                 print('Parent form errors:', parent_form.errors)
         except Session.DoesNotExist:
             pass  # セッションが見つからない場合は何もしない
+        return None
 
-    def post(self, request):
-        student_form = StudentForm(request.POST, prefix='student')
-        parent_form = ParentForm(request.POST, prefix='parent')
-        if student_form.is_valid():
-            student = student_form.save(commit=False)
-            student.session_key = request.session.session_key
-            self.save_form(student_form)  # 保護者情報を関連付ける
-            student.save()
-            return redirect('base:thanks')
-        else:
-            print('Student form errors:', student_form.errors)
+    # def post(self, request):
+    #     student_form = StudentForm(request.POST, prefix='student')
+    #     parent_form = ParentForm(request.POST, prefix='parent')
+    #     if student_form.is_valid():
+    #         student = student_form.save(commit=False)
+    #         student.session_key = request.session.session_key
+    #         parent = self.save_form(student_form)  # 保護者情報を関連付ける
+    #         if parent is not None:
+    #             student.parent = parent
+    #             student.save()
+    #             return redirect('base:thanks')
+    #         else:
+    #             print('Failed to save parent information.')
+    #     else:
+    #         print('Student form errors:', student_form.errors)
 
-        return render(request, 'base/new_register.html', {'student_form': student_form, 'parent_form': parent_form})
+    #     return render(request, 'base/new_register.html', {'student_form': student_form, 'parent_form': parent_form})
 
 register_view = NewRegisterView.as_view()
