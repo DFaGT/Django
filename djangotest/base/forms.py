@@ -33,6 +33,11 @@ class SchoolForm(forms.ModelForm):
         fields = ['name', 'classification', 'city', 'exam_01', 'exam_02', 'exam_03', 'exam_04', 'exam_05']
 
 
+class ParentSearchForm(forms.Form):
+    last_name = forms.CharField(max_length=100, required=True)
+    first_name = forms.CharField(max_length=100, required=True)
+
+
 # from django import forms
 
 # class SchoolForm(forms.ModelForm):

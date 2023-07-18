@@ -15,5 +15,7 @@ urlpatterns = [
     path('student/<int:pk>/edit/', StudentUpdateView.as_view(), name='student_edit'),
     path('new_register/', NewRegisterView.as_view(), name='new_register'),
     path('parent/', ParentListView.as_view(), name='parent-list'),
+    path('add_register/', views.register_student, name='add_register'),
+    path('search_parent/', views.search_parent, name='search_parent'),
 
 ]

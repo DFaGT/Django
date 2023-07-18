@@ -1,0 +1,23 @@
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<h2>生徒の登録</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">登録</button>
+</form>
+
+<h2>保護者の検索</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ search_form.as_p }}
+    <button type="submit">検索</button>
+</form>

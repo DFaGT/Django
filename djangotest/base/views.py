@@ -87,16 +87,16 @@ def register_parent(request):
     return render(request, 'base/register_parent.html', {'form': form})
 
 
-def register_student(request):
-    if request.method == 'POST':
-        form = StudentForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('base:thanks')
-    else:
-        form = StudentForm()
+# def register_student(request):
+#     if request.method == 'POST':
+#         form = StudentForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('base:thanks')
+#     else:
+#         form = StudentForm()
 
-    return render(request, 'base/register_student.html', {'form': form})
+#     return render(request, 'base/add_register.html', {'form': form})
 
 class StudentUpdateView(UpdateView):
     model = Student
@@ -119,7 +119,7 @@ class StudentUpdateView(UpdateView):
 from django.shortcuts import redirect
 from django.views import View
 from django.contrib.sessions.models import Session
-from .forms import ParentForm, StudentForm
+from .forms import ParentForm, StudentForm, ParentSearchForm
 
 
 class NewRegisterView(View):
@@ -182,3 +182,43 @@ class NewRegisterView(View):
     #     return render(request, 'base/new_register.html', {'student_form': student_form, 'parent_form': parent_form})
 
 register_view = NewRegisterView.as_view()
+
+def search_parent(request):
+    if request.method == 'POST':
+        search_form = ParentSearchForm(request.POST)
+        if search_form.is_valid():
+            try:
+                parent = Parent.objects.get(
+                    last_name=search_form.cleaned_data['last_name'],
+                    first_name=search_form.cleaned_data['first_name']
+                )
+                request.session['parent_id'] = parent.parent_id
+                return redirect('base:register_student')
+            except Parent.DoesNotExist:
+                messages.error(request, '該当する保護者が見つかりませんでした')
+                return render(request, 'base/search_parent.html', {'search_form': search_form})
+
+    else:
+        search_form = ParentSearchForm()
+
+    return render(request, 'base/search_parent.html', {'search_form': search_form})
+
+
+
+def register_student(request):
+    if request.method == 'POST':
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            student = form.save(commit=False)  # Don't save the model yet
+            parent_id = request.session.get('parent_id', None)
+            if parent_id is not None:
+                student.parent = Parent.objects.get(parent_id=parent_id)
+            student.save()  # Now save the model
+            return redirect('base:thanks')
+    else:
+        form = StudentForm()
+
+    return render(request, 'base/register_student.html', {'form': form})
+
+
+
