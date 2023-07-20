@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
-from .views import register_student, StudentUpdateView, SchoolListView, StudentListView, NewRegisterView, ParentListView
+from .views import register_student, StudentUpdateView, SchoolListView, StudentListView, NewRegisterView, ParentListView\
+,ParentUpdateView
 from . import views
 from .views import register_view
 
@@ -15,6 +16,7 @@ urlpatterns = [
     path('student/<int:pk>/edit/', StudentUpdateView.as_view(), name='student_edit'),
     path('new_register/', NewRegisterView.as_view(), name='new_register'),
     path('parent/', ParentListView.as_view(), name='parent-list'),
+    path('parent/<int:pk>/edit/', ParentUpdateView.as_view(), name='parent_edit'),
     path('add_register/', views.register_student, name='add_register'),
     path('search_parent/', views.search_parent, name='search_parent'),
 

@@ -83,11 +83,11 @@ class School(models.Model):
 	name = models.CharField(max_length=100)
 	classification = models.CharField(max_length=10, choices=CLASS_TYPES)
 	city = models.CharField(max_length=10, choices=SCHOOL_TYPES,blank=True)
-	exam_01 = models.DateField(auto_now=False, null=True)
-	exam_02 = models.DateField(auto_now=False, null=True)
-	exam_03 = models.DateField(auto_now=False, null=True)
-	exam_04 = models.DateField(auto_now=False, null=True)
-	exam_05 = models.DateField(auto_now=False, null=True)
+	exam_01 = models.DateField(auto_now=False, blank=True, null=True)
+	exam_02 = models.DateField(auto_now=False, blank=True, null=True)
+	exam_03 = models.DateField(auto_now=False, blank=True, null=True)
+	exam_04 = models.DateField(auto_now=False, blank=True, null=True)
+	exam_05 = models.DateField(auto_now=False, blank=True, null=True)
 	def __str__(self):
 		return self.name
 

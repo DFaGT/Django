@@ -1,0 +1,39 @@
+{% block content %}
+  <h2>学校情報を編集</h2>
+  <form method="POST">
+  {% csrf_token %}
+    <p>{{ form.name.label }}: {{ form.name }}</p>
+    {% if form.name.errors %}
+       <p>{{ form.name.errors }}</p>
+    {% endif %}
+    <p>{{ form.classification.label }}: {{ form.classification }}</p>
+    {% if form.classification.errors %}
+       <p>{{ form.classification.errors }}</p>
+    {% endif %}
+    <p>{{ form.city.label }}: {{ form.city }}</p>
+    {% if form.city.errors %}
+       <p>{{ form.city.errors }}</p>
+    {% endif %}
+    <p>{{ form.exam_01.label }}: {{ form.exam_01 }}</p>
+    {% if form.exam_01.errors %}
+       <p>{{ form.exam_01.errors }}</p>
+    {% endif %}
+    <p>{{ form.exam_02.label }}: {{ form.exam_02 }}</p>
+    {% if form.exam_02.errors %}
+       <p>{{ form.exam_02.errors }}</p>
+    {% endif %}
+    <p>{{ form.exam_03.label }}: {{ form.exam_03 }}</p>
+    {% if form.exam_03.errors %}
+       <p>{{ form.exam_03.errors }}</p>
+    {% endif %}
+    <p>{{ form.exam_04.label }}: {{ form.exam_04 }}</p>
+    {% if form.exam_04.errors %}
+       <p>{{ form.exam_04.errors }}</p>
+    {% endif %}
+    <p>{{ form.exam_05.label }}: {{ form.exam_05 }}</p>
+    {% if form.exam_05.errors %}
+       <p>{{ form.exam_05.errors }}</p>
+    {% endif %}
+    <button type="submit">更新</button>
+  </form>
+{% endblock %}

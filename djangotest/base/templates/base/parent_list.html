@@ -1,43 +1,41 @@
 <!-- school_list.html -->
 <!-- 絞り込みフォーム -->
 <form method="GET" action="">
-    <input type="checkbox" name="filter" id="filter" {% if filter_checked %}checked{% endif %}>
-    <label for="filter">兄弟有のみ表示する</label>
-    <button type="submit">絞り込む</button>
-    {% if filter_checked %}
-      <a href="?filter=">絞り込み解除</a>
-    {% endif %}
-  </form>
-  
-  <!-- 学校リストの表示 -->
-  <table>
-    <thead>
-      <tr>
-        <th>苗字</th>
-        <th>名前</th>
-        <th>郵便番号</th>
-        <th>住所</th>
-        <th>メールアドレス</th>
-        <th>電話番号</th>
-        <th>ステータス</th>
-        <th>規約同意</th>
-        <th>BASEを知ったきっかけ</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for parent in parents %}
-        <tr>
-          <td>{{ parent.last_name }}</td>
-          <td>{{ parent.first_name }}</td>
-          <td>{{ parent.postal_code }}</td>
-          <td>{{ parent.address }}</td>
-          <td>{{ parent.email }}</td>
-          <td>{{ parent.phone_number }}</td>
-          <td>{{ parent.status }}</td>
-          <td>{{ parent.terms }}</td>
-          <td>{{ parent.how_to_know }}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  
+  <!-- ... -->
+</form>
+
+<!-- 学校リストの表示 -->
+<table>
+<thead>
+  <tr>
+    <th>苗字</th>
+    <th>名前</th>
+    <th>郵便番号</th>
+    <th>住所</th>
+    <th>メールアドレス</th>
+    <th>電話番号</th>
+    <th>ステータス</th>
+    <th>規約同意</th>
+    <th>BASEを知ったきっかけ</th>
+    <th>操作</th> <!-- 編集ボタン用のヘッダーを追加 -->
+  </tr>
+</thead>
+<tbody>
+  {% for parent in parents %}
+    <tr>
+      <td>{{ parent.last_name }}</td>
+      <td>{{ parent.first_name }}</td>
+      <td>{{ parent.postal_code }}</td>
+      <td>{{ parent.address }}</td>
+      <td>{{ parent.email }}</td>
+      <td>{{ parent.phone_number }}</td>
+      <td>{{ parent.status }}</td>
+      <td>{{ parent.terms }}</td>
+      <td>{{ parent.how_to_know }}</td>
+      <td>
+        <a href="{% url 'parent_edit' parent.parent_id %}">編集</a> <!-- 各行に編集ボタンを配置 -->
+      </td>
+    </tr>
+  {% endfor %}
+</tbody>
+</table>

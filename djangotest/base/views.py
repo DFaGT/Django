@@ -55,6 +55,17 @@ class StudentListView(ListView):
         context['filter_checked'] = self.request.GET.get('filter')
         return context
 
+class SchoolEditView(UpdateView):
+    model = School
+    fields = ['name', 'classification', 'city', 'exam_01', 'exam_02', 'exam_03', 'exam_04', 'exam_05']
+    template_name = 'base/school_edit.html'
+    success_url = reverse_lazy('school-list')
+    
+    def form_valid(self, form):
+        print("Form is valid")  # フォームが有効なときにコンソールにメッセージを表示
+        return super().form_valid(form)
+
+
 class ParentListView(ListView):
     model = Parent
     template_name = 'parent_list.html'
@@ -71,6 +82,13 @@ class ParentListView(ListView):
         context = super().get_context_data(**kwargs)
         context['filter_checked'] = self.request.GET.get('filter')
         return context
+    
+class ParentUpdateView(UpdateView):
+    model = Parent
+    fields = ['last_name', 'first_name', 'postal_code', 'address', 'email', 'phone_number', 'status', 'terms', 'how_to_know']
+    template_name = 'base/parent_update.html'
+    context_object_name = 'parent'
+    success_url = reverse_lazy('parent-list')
     
 def thanks(request):
     return HttpResponse("Thank you for registering!")

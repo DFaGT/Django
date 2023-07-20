@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from base.views import SchoolListView, SchoolCreateView, StudentListView, ParentListView, StudentUpdateView, \
-NewRegisterView
+NewRegisterView, ParentUpdateView, SchoolEditView
 from django.urls import path, include
 
 app_name = 'base'
@@ -25,12 +25,16 @@ app_name = 'base'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('school/', SchoolListView.as_view(), name='school-list'),
+    path('school/<int:pk>/edit/', SchoolEditView.as_view(), name='school_edit'),  # 編集ビューのURLパターンを追加
+
     path('student/', StudentListView.as_view(), name='student-list'),
     path('parent/', ParentListView.as_view(), name='parent-list'),
     path('school/create/', SchoolCreateView.as_view(), name='school-create'),
     path('student/<int:pk>/edit/', StudentUpdateView.as_view(), name='student_edit'),
     path('base/', include(('base.urls', 'base'), namespace='base')),
     path('new_register/', NewRegisterView.as_view(), name='new_register'),
+    path('parent/<int:pk>/edit/', ParentUpdateView.as_view(), name='parent_edit'),
+
   # アプリ内のurls.pyをインクルード
 
 ]
