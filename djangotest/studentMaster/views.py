@@ -13,7 +13,7 @@ from django.views import View
 from django.views.generic import TemplateView
 
 class HomeView(TemplateView):
-    template_name = "base/home.html"
+    template_name = "studentMaster/home.html"
 
 class SchoolListView(ListView):
     model = School
@@ -34,7 +34,7 @@ class SchoolListView(ListView):
 
 class SchoolCreateView(CreateView):
     model = School
-    template_name = 'base/school_create.html'
+    template_name = 'studentMaster/school_create.html'
     fields = ['name', 'classification', 'city']
     success_url = '/school/'
 
@@ -58,7 +58,7 @@ class StudentListView(ListView):
 class SchoolEditView(UpdateView):
     model = School
     fields = ['name', 'classification', 'city', 'exam_01', 'exam_02', 'exam_03', 'exam_04', 'exam_05']
-    template_name = 'base/school_edit.html'
+    template_name = 'studentMaster/school_edit.html'
     success_url = reverse_lazy('school-list')
     
     def form_valid(self, form):
@@ -86,7 +86,7 @@ class ParentListView(ListView):
 class ParentUpdateView(UpdateView):
     model = Parent
     fields = ['last_name', 'first_name', 'postal_code', 'address', 'email', 'phone_number', 'status', 'terms', 'how_to_know']
-    template_name = 'base/parent_update.html'
+    template_name = 'studentMaster/parent_update.html'
     context_object_name = 'parent'
     success_url = reverse_lazy('parent-list')
     
@@ -98,11 +98,11 @@ def register_parent(request):
         form = ParentForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('base:thanks') 
+            return redirect('studentMaster:thanks') 
     else:
         form = ParentForm()
 
-    return render(request, 'base/register_parent.html', {'form': form})
+    return render(request, 'studentMaster/register_parent.html', {'form': form})
 
 
 # def register_student(request):
@@ -110,16 +110,16 @@ def register_parent(request):
 #         form = StudentForm(request.POST)
 #         if form.is_valid():
 #             form.save()
-#             return redirect('base:thanks')
+#             return redirect('studentMaster:thanks')
 #     else:
 #         form = StudentForm()
 
-#     return render(request, 'base/add_register.html', {'form': form})
+#     return render(request, 'studentMaster/add_register.html', {'form': form})
 
 class StudentUpdateView(UpdateView):
     model = Student
     form_class = StudentForm
-    template_name = 'base/student_update.html'
+    template_name = 'studentMaster/student_update.html'
     success_url = reverse_lazy('student-list')
 
     def form_valid(self, form):
@@ -144,7 +144,7 @@ class NewRegisterView(View):
     def get(self, request):
         student_form = StudentForm(prefix='student')
         parent_form = ParentForm(prefix='parent')
-        return render(request, 'base/new_register.html', {'student_form': student_form, 'parent_form': parent_form})
+        return render(request, 'studentMaster/new_register.html', {'student_form': student_form, 'parent_form': parent_form})
 
     def post(self, request):
         student_form = StudentForm(request.POST, prefix='student')
@@ -154,13 +154,13 @@ class NewRegisterView(View):
             student = student_form.save(commit=False)
             student.parent = parent  # Link to the student's parent field
             student.save()
-            return redirect('base:thanks')
+            return redirect('studentMaster:thanks')
 
         # Print errors if there are any
         print('Student form errors:', student_form.errors)
         print('Parent form errors:', parent_form.errors)
 
-        return render(request, 'base/new_register.html', {'student_form': student_form, 'parent_form': parent_form})
+        return render(request, 'studentMaster/new_register.html', {'student_form': student_form, 'parent_form': parent_form})
 
 
 
@@ -191,13 +191,13 @@ class NewRegisterView(View):
     #         if parent is not None:
     #             student.parent = parent
     #             student.save()
-    #             return redirect('base:thanks')
+    #             return redirect('studentMaster:thanks')
     #         else:
     #             print('Failed to save parent information.')
     #     else:
     #         print('Student form errors:', student_form.errors)
 
-    #     return render(request, 'base/new_register.html', {'student_form': student_form, 'parent_form': parent_form})
+    #     return render(request, 'studentMaster/new_register.html', {'student_form': student_form, 'parent_form': parent_form})
 
 register_view = NewRegisterView.as_view()
 
@@ -211,15 +211,15 @@ def search_parent(request):
                     first_name=search_form.cleaned_data['first_name']
                 )
                 request.session['parent_id'] = parent.parent_id
-                return redirect('base:register_student')
+                return redirect('studentMaster:register_student')
             except Parent.DoesNotExist:
                 messages.error(request, '該当する保護者が見つかりませんでした')
-                return render(request, 'base/search_parent.html', {'search_form': search_form})
+                return render(request, 'studentMaster/search_parent.html', {'search_form': search_form})
 
     else:
         search_form = ParentSearchForm()
 
-    return render(request, 'base/search_parent.html', {'search_form': search_form})
+    return render(request, 'studentMaster/search_parent.html', {'search_form': search_form})
 
 
 
@@ -232,11 +232,11 @@ def register_student(request):
             if parent_id is not None:
                 student.parent = Parent.objects.get(parent_id=parent_id)
             student.save()  # Now save the model
-            return redirect('base:thanks')
+            return redirect('studentMaster:thanks')
     else:
         form = StudentForm()
 
-    return render(request, 'base/register_student.html', {'form': form})
+    return render(request, 'studentMaster/register_student.html', {'form': form})
 
 
 

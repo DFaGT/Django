@@ -1,9 +1,9 @@
-- model: base.school
+- model: studentMaster.school
   fields:
     name: "小平市立小平小学校"
     classification: "小学校"
     city: "小平市"
-- model: base.school
+- model: studentMaster.school
   fields:
     name: "西東京市立西東京中学校"
     classification: "中学校"
@@ -13,7 +13,7 @@
     exam_03: 2023-09-14
     exam_04: 2024-11-29
     exam_05: 2024-01-28
-- model: base.school
+- model: studentMaster.school
   fields:
     name: "東久留米市立久留米高校"
     classification: "高校"
@@ -23,7 +23,7 @@
     exam_03: 2023-10-10
     exam_04: 2024-12-15
     exam_05: 2024-01-30
-- model: base.school
+- model: studentMaster.school
   fields:
     name: "新座市立新座中学校"
     classification: "中学校"
@@ -33,12 +33,12 @@
     exam_03: 2023-09-25
     exam_04: 2024-12-03
     exam_05: 2024-01-28
-- model: base.school
+- model: studentMaster.school
   fields:
     name: "練馬区立練馬小学校"
     classification: "小学校"
     city: "練馬区"
-- model: base.school
+- model: studentMaster.school
   fields:
     name: "小平市立小平高校"
     classification: "高校"
@@ -48,7 +48,7 @@
     exam_03: 2023-10-20
     exam_04: 2024-11-25
     exam_05: 2024-01-20
-- model: base.school
+- model: studentMaster.school
   fields:
     name: "東久留米市立東久留米中学校"
     classification: "中学校"
@@ -58,7 +58,7 @@
     exam_03: 2023-10-01
     exam_04: 2024-11-25
     exam_05: 2024-01-30
-- model: base.parent
+- model: studentMaster.parent
   fields:
     parent_id: 3
     last_name: "田中"
@@ -70,7 +70,7 @@
     status: "通塾"
     terms: true
     how_to_know: ""
-- model: base.student
+- model: studentMaster.student
   fields:
     student_id: 3
     last_name: "田中"
@@ -87,7 +87,7 @@
     phone_number: ""
     introducer: ""
     course: ""
-- model: base.parent
+- model: studentMaster.parent
   fields:
     parent_id: 4
     last_name: "山田"
@@ -99,7 +99,7 @@
     status: "通塾"
     terms: true
     how_to_know: ""
-- model: base.student
+- model: studentMaster.student
   fields:
     student_id: 4
     last_name: "山田"
@@ -116,7 +116,7 @@
     phone_number: ""
     introducer: ""
     course: ""
-- model: base.parent
+- model: studentMaster.parent
   fields:
     parent_id: 5
     last_name: "佐藤"
@@ -128,7 +128,7 @@
     status: "通塾"
     terms: true
     how_to_know: ""
-- model: base.student
+- model: studentMaster.student
   fields:
     student_id: 5
     last_name: "佐藤"
@@ -145,7 +145,7 @@
     phone_number: ""
     introducer: ""
     course: ""
-- model: base.parent
+- model: studentMaster.parent
   fields:
     parent_id: 1
     last_name: "佐藤"
@@ -157,7 +157,7 @@
     status: "通塾"
     terms: true
     how_to_know: ""
-- model: base.student
+- model: studentMaster.student
   fields:
     student_id: 1
     last_name: "佐藤"
@@ -174,7 +174,7 @@
     phone_number: ""
     introducer: ""
     course: ""
-- model: base.parent
+- model: studentMaster.parent
   fields:
     parent_id: 2
     last_name: "鈴木"
@@ -186,7 +186,7 @@
     status: "通塾"
     terms: true
     how_to_know: "" 
-- model: base.student
+- model: studentMaster.student
   fields:
     student_id: 2
     last_name: "鈴木"

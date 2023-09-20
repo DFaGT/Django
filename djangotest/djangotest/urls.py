@@ -16,11 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from base.views import SchoolListView, SchoolCreateView, StudentListView, ParentListView, StudentUpdateView, \
+from studentMaster.views import SchoolListView, SchoolCreateView, StudentListView, ParentListView, StudentUpdateView, \
 NewRegisterView, ParentUpdateView, SchoolEditView
 from django.urls import path, include
 
-app_name = 'base'
+app_name = 'studentMaster'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,7 +31,7 @@ urlpatterns = [
     path('parent/', ParentListView.as_view(), name='parent-list'),
     path('school/create/', SchoolCreateView.as_view(), name='school-create'),
     path('student/<int:pk>/edit/', StudentUpdateView.as_view(), name='student_edit'),
-    path('base/', include(('base.urls', 'base'), namespace='base')),
+    path('studentMaster/', include(('studentMaster.urls', 'studentMaster'), namespace='studentMaster')),
     path('new_register/', NewRegisterView.as_view(), name='new_register'),
     path('parent/<int:pk>/edit/', ParentUpdateView.as_view(), name='parent_edit'),
 
